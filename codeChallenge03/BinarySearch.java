@@ -1,26 +1,35 @@
+public class App {
+    public String getGreeting() {
+        return "Hello world.";
+    }
 
-    public class Library {
     public static void main(String[] args) {
-        BinarySearch(new int[]{4, 8, 15, 16, 23, 42}, 42);
+        System.out.println(new App().getGreeting());
+        System.out.println(binarySearch(new int[]{ 4, 8, 12, 54,74, 94 }, 8));
     }
-
-    public static int[] BinarySearch(int[] arr, int num) {
-        int k;
-        for (k = 0; k < arr.length / 2; k++) {
-            if (num == arr[k]) {
-                System.out.println(k);
-                k = 100;
+    public static int binarySearch(int[] arr, int number) {
+        boolean isThere=false;
+        for (int i =0;i<arr.length;i++){
+            if(arr[i]==number){
+                 isThere=true;
             }
         }
-        System.out.println(k);
-        if (k ==3) {
-            for (int w = k ; w < arr.length; w++) {
-                if (num == arr[w]) {
-                    System.out.println("this the ans "+ w);
-                    w = 100;
+        if (isThere) {
+            int lower = 0;
+            int higher = arr.length-1;
+            int middle = (lower + higher) / 2;
+                while (lower <= higher) {
+                    if (arr[middle] < number) {
+                        lower = middle + 1;
+                    } else if (arr[middle] == number) {
+                        return middle;
+                    } else {
+                        higher = middle - 1;
+                    }
+                    middle = (lower + higher) / 2;
                 }
-            }
+                return -1;
         }
-        return arr;
+        return -1;
     }
-    }
+}
